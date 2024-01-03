@@ -1,0 +1,38 @@
+namespace: default
+name: banner
+deployment:
+  client:
+    replicas: 1
+    image:
+      repository: bennynoyman/banner-front
+      name: banner-client
+      tag: 0.0.1
+    base_url: /banner/api
+  server:
+    replicas: 1
+    image:
+      repository: bennynoyman/banner-back
+      name: banner-server
+      tag: 0.0.4
+ingress:
+  client:
+    path: /banner(/|$)(.*)
+    pathType: ImplementationSpecific
+  server:
+    path: /banner/api(/|$)(.*)
+    pathType: ImplementationSpecific
+mongodb:
+  global:
+    namespaceOverride: default
+  fullnameOverride: banner-mongodb
+  architecture: replicaset
+  auth:
+    enabled: true
+    rootUser: root
+    rootPassword: password
+  replicaCount: 3
+  persistence:
+    size: 1Gi
+  arbiter:
+    enabled: false
+  
