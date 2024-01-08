@@ -6,7 +6,7 @@ deployment:
     image:
       repository: banner-front
       name: banner-client
-      tag: 1.1.1
+      tag: 0.1.0
     base_url: http://localhost/banner/api
   server:
     replicas: 1
